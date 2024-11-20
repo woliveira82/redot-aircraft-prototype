@@ -31,3 +31,6 @@ texture = ExtResource("1_wtqe5")
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
 position = Vector2(150, 0)
 remote_path = NodePath("../../Camera2D")
+update_rotation = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
