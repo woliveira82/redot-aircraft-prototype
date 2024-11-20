@@ -9,12 +9,12 @@ var _g_turn_on := false
 @onready var remote_transform_2d: RemoteTransform2D = $RemoteTransform2D
 
 
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("g_turn"):
-		_g_turn_on = true
-	elif Input.is_action_just_released("g_turn"):
-		_g_turn_on = false
+func _ready() -> void:
+	InputHandler.on_g_turn_off.connect(_set_g_force, false)
+	InputHandler.on_g_turn_on.connect(_set_g_force, true)
 
+
+func _process(delta: float) -> void:
 	var turn_angle: float = _g_turn_angle if _g_turn_on else _turn_angle
 
 	var control: Vector2 = InputHandler.get_input_direction()
@@ -33,3 +33,7 @@ func _process(delta: float) -> void:
 
 func _adjust_remote_transform_position(direction: Vector2):
 	remote_transform_2d.position.x = 160 + pow(abs(direction.x), 2.0) * 115.0
+
+
+func _set_g_force(g_force: bool):
+	_g_turn_on = g_force

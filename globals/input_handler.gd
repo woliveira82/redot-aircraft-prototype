@@ -1,27 +1,18 @@
 extends Node
 
-# signal on_shoot_pressed
-# signal on_shoot_released
-# signal on_secondary_weapon
+signal on_g_turn_on
+signal on_g_turn_off
+signal on_high_g_barrel_left
+signal on_high_g_barrel_right
 
-# signal on_transform_pressed
 
+func _input(event: InputEvent) -> void:
+	if event.is_action("g_turn"):
+		if event.is_pressed():
+			on_g_turn_on.emit()
 
-# func _input(event: InputEvent) -> void:
-# 	if event is InputEventMouseButton:
-# 		match event.button_index:
-# 			MOUSE_BUTTON_LEFT:
-# 				if event.pressed:
-# 					on_shoot_pressed.emit()
-# 				else:
-# 					on_shoot_released.emit()
-# 			MOUSE_BUTTON_RIGHT:
-# 				if event.pressed:
-# 					on_secondary_weapon.emit()
-
-# 	elif event is InputEventKey:
-# 		if event.is_action_pressed("Transform"):
-# 			on_transform_pressed.emit()
+		else:
+			on_g_turn_off.emit()
 
 
 func get_input_direction() -> Vector2:
