@@ -1,8 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://bhu6yt022ld1c"]
+[gd_scene load_steps=13 format=3 uid="uid://bhu6yt022ld1c"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_rjy3b"]
 [ext_resource type="Texture2D" uid="uid://bvh7u4cf8lxvk" path="res://assets/Placeholders-32x32-23.png" id="1_wtqe5"]
 [ext_resource type="Texture2D" uid="uid://bk43e071r74nb" path="res://assets/white-circle.png" id="2_sm18u"]
+[ext_resource type="Script" path="res://player/cannon.gd" id="4_3rb2r"]
+[ext_resource type="PackedScene" uid="uid://cduopc8ukaxd6" path="res://bullet/bullet.tscn" id="5_ldt7c"]
 
 [sub_resource type="Curve" id="Curve_jgwmn"]
 min_value = 0.3
@@ -228,6 +230,15 @@ rotation = -1.5708
 position = Vector2(-5, 0)
 shape = SubResource("CircleShape2D_yfxhl")
 
+[node name="Cannon" type="Node2D" parent="Sprite2D"]
+position = Vector2(-2.89599e-05, -8)
+rotation = -1.5708
+script = ExtResource("4_3rb2r")
+bullet_scene = ExtResource("5_ldt7c")
+
+[node name="Timer" type="Timer" parent="Sprite2D/Cannon"]
+wait_time = 0.2
+
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
 position = Vector2(150, 0)
 remote_path = NodePath("../../Camera2D")
@@ -237,3 +248,5 @@ update_rotation = false
 libraries = {
 "": SubResource("AnimationLibrary_8gbd8")
 }
+
+[connection signal="timeout" from="Sprite2D/Cannon/Timer" to="Sprite2D/Cannon" method="_on_timer_timeout"]
