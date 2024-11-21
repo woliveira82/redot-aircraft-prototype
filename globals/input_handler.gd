@@ -1,18 +1,21 @@
 extends Node
 
-signal on_g_turn_on
-signal on_g_turn_off
+signal on_g_turn_pressed
 signal on_high_g_barrel_left
 signal on_high_g_barrel_right
 
 
 func _input(event: InputEvent) -> void:
 	if event.is_action("g_turn"):
-		if event.is_pressed():
-			on_g_turn_on.emit()
+		on_g_turn_pressed.emit(event.is_pressed())
 
-		else:
-			on_g_turn_off.emit()
+	elif event.is_action("high_g_barrel_left"):
+		if event.is_pressed():
+			on_high_g_barrel_left.emit()
+	
+	elif event.is_action("high_g_barrel_right"):
+		if event.is_pressed():
+			on_high_g_barrel_right.emit()
 
 
 func get_input_direction() -> Vector2:
@@ -21,4 +24,4 @@ func get_input_direction() -> Vector2:
 	direction.x = Input.get_axis("move_left", "move_right")
 	direction.y = Input.get_axis("move_up", "move_down")
 	
-	return direction.normalized()
+	return direction
