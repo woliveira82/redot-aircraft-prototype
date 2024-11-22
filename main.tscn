@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://c456k87rcla8r"]
+[gd_scene load_steps=6 format=3 uid="uid://c456k87rcla8r"]
 
 [ext_resource type="Texture2D" uid="uid://dvtx6o5x15tc3" path="res://assets/Placeholders-32x32-27.png" id="1_gw7bq"]
 [ext_resource type="PackedScene" uid="uid://bhu6yt022ld1c" path="res://player/player.tscn" id="2_x2e4t"]
 [ext_resource type="PackedScene" uid="uid://dwnpv3s7it7pg" path="res://enemies/enemy.tscn" id="3_tt4h1"]
+[ext_resource type="Script" path="res://hud/hud.gd" id="4_daemq"]
+[ext_resource type="PackedScene" uid="uid://bsg208xnrg8nu" path="res://hud/enemy_tracker.tscn" id="5_7ddsr"]
 
 [node name="Main" type="Node"]
 
@@ -27,5 +29,19 @@ rotation_smoothing_speed = 2.0
 
 [node name="Enemy" parent="." instance=ExtResource("3_tt4h1")]
 position = Vector2(414, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+script = ExtResource("4_daemq")
+enemy_tracker = ExtResource("5_7ddsr")
 
 [editable path="Player"]

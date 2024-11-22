@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bsg208xnrg8nu"]
+
+[ext_resource type="Script" path="res://hud/enemy_tracker.gd" id="1_ancv6"]
+[ext_resource type="Texture2D" uid="uid://bhccphfnvouvr" path="res://assets/Placeholders-32x32-18.png" id="1_d11tg"]
+[ext_resource type="Texture2D" uid="uid://d2yc242y2grct" path="res://assets/Placeholders-32x32-20.png" id="2_sjmlo"]
+
+[node name="EnemyTracker" type="Node2D"]
+script = ExtResource("1_ancv6")
+
+[node name="OutOfRangeSprite" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_d11tg")
+
+[node name="OnScreenSprite" type="Sprite2D" parent="."]
+visible = false
+self_modulate = Color(1, 1, 1, 0.25098)
+texture = ExtResource("2_sjmlo")

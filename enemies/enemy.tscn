@@ -20,7 +20,7 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_dwjyo"]
 points = PackedVector2Array(0, 0, 300, -100, 300, 100)
 
-[node name="Enemy" type="Node2D"]
+[node name="Enemy" type="Node2D" groups=["enemy"]]
 script = ExtResource("1_41sj6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
