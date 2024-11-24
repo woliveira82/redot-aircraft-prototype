@@ -1,6 +1,11 @@
-extends Node2D
+extends RayCast2D
+
+const VIEWPORT_CENTER := Vector2(320, 180)
 
 var _enemy_tracked: Node2D
+
+@onready var out_of_range_sprite: Sprite2D = $OutOfRangeSprite
+@onready var on_screen_sprite: Sprite2D = $OnScreenSprite
 
 
 func _process(delta: float) -> void:
@@ -9,15 +14,16 @@ func _process(delta: float) -> void:
 		return
 	
 	var camera = get_viewport().get_camera_2d()
-	var canvas = get_canvas_transform()
-	var top_left = -canvas.origin / canvas.get_scale()
-	var size = get_viewport_rect().size / canvas.get_scale()
+	target_position = _enemy_tracked.position - camera.get_screen_center_position()
 	
-	var relative_position = _enemy_tracked.position - camera.get_screen_center_position() + Vector2(320, 180)
-	position.x = clamp(relative_position.x, top_left.x, top_left.x + size.x)
-	position.y = clamp(relative_position.y, top_left.y, top_left.y + size.y)
+	if is_colliding():
+		out_of_range_sprite.show()
+		var collision_point := get_collision_point() - position
+		out_of_range_sprite.position = collision_point
+		out_of_range_sprite.rotation = collision_point.angle()
 	
-	print(position)
+	else:
+		out_of_range_sprite.hide()
 
 
 func set_enemy(enemy: Node2D):

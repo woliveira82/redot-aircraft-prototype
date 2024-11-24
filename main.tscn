@@ -1,10 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://c456k87rcla8r"]
+[gd_scene load_steps=10 format=3 uid="uid://c456k87rcla8r"]
 
 [ext_resource type="Texture2D" uid="uid://dvtx6o5x15tc3" path="res://assets/Placeholders-32x32-27.png" id="1_gw7bq"]
 [ext_resource type="PackedScene" uid="uid://bhu6yt022ld1c" path="res://player/player.tscn" id="2_x2e4t"]
 [ext_resource type="PackedScene" uid="uid://dwnpv3s7it7pg" path="res://enemies/enemy.tscn" id="3_tt4h1"]
 [ext_resource type="Script" path="res://hud/hud.gd" id="4_daemq"]
 [ext_resource type="PackedScene" uid="uid://bsg208xnrg8nu" path="res://hud/enemy_tracker.tscn" id="5_7ddsr"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4hmk0"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_vvl83"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_o8l7v"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3yc6f"]
+normal = Vector2(-1, 0)
 
 [node name="Main" type="Node"]
 
@@ -43,5 +54,25 @@ size_flags_horizontal = 6
 size_flags_vertical = 6
 script = ExtResource("4_daemq")
 enemy_tracker = ExtResource("5_7ddsr")
+
+[node name="ViewportBoundaries" type="Area2D" parent="CanvasLayer/HUD"]
+collision_layer = 128
+collision_mask = 0
+
+[node name="UpperBoundary" type="CollisionShape2D" parent="CanvasLayer/HUD/ViewportBoundaries"]
+position = Vector2(310, 0)
+shape = SubResource("WorldBoundaryShape2D_4hmk0")
+
+[node name="BottomBoundary" type="CollisionShape2D" parent="CanvasLayer/HUD/ViewportBoundaries"]
+position = Vector2(310, 360)
+shape = SubResource("WorldBoundaryShape2D_vvl83")
+
+[node name="LeftBoundary" type="CollisionShape2D" parent="CanvasLayer/HUD/ViewportBoundaries"]
+position = Vector2(0, 180)
+shape = SubResource("WorldBoundaryShape2D_o8l7v")
+
+[node name="RightBoundary" type="CollisionShape2D" parent="CanvasLayer/HUD/ViewportBoundaries"]
+position = Vector2(640, 180)
+shape = SubResource("WorldBoundaryShape2D_3yc6f")
 
 [editable path="Player"]

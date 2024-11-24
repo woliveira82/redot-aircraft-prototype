@@ -211,7 +211,6 @@ _data = {
 script = ExtResource("1_rjy3b")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-rotation = 1.5708
 texture = ExtResource("1_wtqe5")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="Sprite2D"]
@@ -224,15 +223,13 @@ scale_amount_curve = SubResource("Curve_jgwmn")
 color_ramp = SubResource("Gradient_k86wc")
 
 [node name="Area2D" type="Area2D" parent="Sprite2D" groups=["player_area"]]
-rotation = -1.5708
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
 position = Vector2(-5, 0)
 shape = SubResource("CircleShape2D_yfxhl")
 
 [node name="Cannon" type="Node2D" parent="Sprite2D"]
-position = Vector2(-2.89599e-05, -8)
-rotation = -1.5708
+position = Vector2(16, 0)
 script = ExtResource("4_3rb2r")
 bullet_scene = ExtResource("5_ldt7c")
 

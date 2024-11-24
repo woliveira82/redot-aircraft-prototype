@@ -4,12 +4,16 @@
 [ext_resource type="Texture2D" uid="uid://bhccphfnvouvr" path="res://assets/Placeholders-32x32-18.png" id="1_d11tg"]
 [ext_resource type="Texture2D" uid="uid://d2yc242y2grct" path="res://assets/Placeholders-32x32-20.png" id="2_sjmlo"]
 
-[node name="EnemyTracker" type="Node2D"]
+[node name="EnemyTracker" type="RayCast2D"]
+collision_mask = 128
+collide_with_areas = true
+collide_with_bodies = false
 script = ExtResource("1_ancv6")
 
 [node name="OutOfRangeSprite" type="Sprite2D" parent="."]
-scale = Vector2(0.25, 0.25)
+position = Vector2(18, 0)
 texture = ExtResource("1_d11tg")
+offset = Vector2(-18, 0)
 
 [node name="OnScreenSprite" type="Sprite2D" parent="."]
 visible = false

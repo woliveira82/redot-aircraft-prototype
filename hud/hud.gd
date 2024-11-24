@@ -10,4 +10,5 @@ func _ready() -> void:
 	for enemy in enemies:
 		var tracker := enemy_tracker.instantiate()
 		add_child(tracker)
+		tracker.position = size / 2.0
 		tracker.set_enemy(enemy)
