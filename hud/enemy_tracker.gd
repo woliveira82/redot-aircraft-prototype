@@ -14,9 +14,11 @@ func _process(delta: float) -> void:
 		return
 	
 	var camera = get_viewport().get_camera_2d()
-	target_position = _enemy_tracked.position - camera.get_screen_center_position()
+	var relative_position: Vector2 = _enemy_tracked.position - camera.get_screen_center_position()
+	target_position = relative_position
 	
 	if is_colliding():
+		on_screen_sprite.hide()
 		out_of_range_sprite.show()
 		var collision_point := get_collision_point() - position
 		out_of_range_sprite.position = collision_point
@@ -24,6 +26,8 @@ func _process(delta: float) -> void:
 	
 	else:
 		out_of_range_sprite.hide()
+		on_screen_sprite.show()
+		on_screen_sprite.position = relative_position
 
 
 func set_enemy(enemy: Node2D):
