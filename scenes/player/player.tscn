@@ -1,14 +1,15 @@
-[gd_scene load_steps=13 format=3 uid="uid://bhu6yt022ld1c"]
+[gd_scene load_steps=14 format=3 uid="uid://bhu6yt022ld1c"]
 
-[ext_resource type="Script" path="res://player/player.gd" id="1_rjy3b"]
-[ext_resource type="Texture2D" uid="uid://bvh7u4cf8lxvk" path="res://assets/Placeholders-32x32-23.png" id="1_wtqe5"]
+[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_rjy3b"]
+[ext_resource type="Texture2D" uid="uid://dc52s0g784crp" path="res://assets/w-fighter-Sheet.png" id="2_3q8rd"]
 [ext_resource type="Texture2D" uid="uid://bk43e071r74nb" path="res://assets/white-circle.png" id="2_sm18u"]
-[ext_resource type="Script" path="res://player/cannon.gd" id="4_3rb2r"]
-[ext_resource type="PackedScene" uid="uid://cduopc8ukaxd6" path="res://bullet/bullet.tscn" id="5_ldt7c"]
+[ext_resource type="Script" path="res://scenes/player/sprite_2d.gd" id="3_5q88u"]
+[ext_resource type="Script" path="res://scenes/player/cannon.gd" id="4_3rb2r"]
+[ext_resource type="PackedScene" uid="uid://cduopc8ukaxd6" path="res://scenes/bullet/bullet.tscn" id="5_ldt7c"]
 
 [sub_resource type="Curve" id="Curve_jgwmn"]
 min_value = 0.3
-_data = [Vector2(0, 0.3), 0.0, 0.0, 0, 0, Vector2(0.0561798, 1), 0.0, 0.0, 0, 0, Vector2(0.426966, 0.3), 0.0, 0.0, 0, 0, Vector2(1, 0.3), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.3), 0.0, 0.0, 0, 0, Vector2(0.0355556, 0.646154), 0.0, 0.0, 0, 0, Vector2(0.168889, 0.323077), 0.0, 0.0, 0, 0, Vector2(1, 0.3), 0.0, 0.0, 0, 0]
 point_count = 4
 
 [sub_resource type="Gradient" id="Gradient_k86wc"]
@@ -34,19 +35,19 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/path = NodePath("Sprite2D/Area2D:monitoring")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
+"update": 1,
+"values": [true]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D/Area2D:monitoring")
+tracks/2/path = NodePath("Sprite2D/Area2D:monitorable")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -58,14 +59,14 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D/Area2D:monitorable")
+tracks/3/path = NodePath("Sprite2D:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [4]
 }
 
 [sub_resource type="Animation" id="Animation_yqgv3"]
@@ -83,25 +84,13 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, -10), Vector2(0, -70), Vector2(0, -80), Vector2(0, -70), Vector2(0, -10), Vector2(0, 0)]
 }
-tracks/1/type = "value"
+tracks/1/type = "method"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(0.1, 1), Vector2(1, 1), Vector2(0.1, 1), Vector2(1, 1)]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0.6),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -109,10 +98,22 @@ tracks/2/keys = {
 "method": &"turn_off_maneuvering"
 }]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D/Area2D:monitoring")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.766667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D/Area2D:monitoring")
+tracks/3/path = NodePath("Sprite2D/Area2D:monitorable")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -124,14 +125,14 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Sprite2D/Area2D:monitorable")
+tracks/4/path = NodePath("Sprite2D:frame")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.766667),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.0666667, 0.1, 0.133333, 0.2, 0.266667, 0.3, 0.333333, 0.4, 0.466667, 0.5, 0.533333, 0.6, 0.666667, 0.7, 0.733333, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [true, false, true]
+"values": [4, 3, 2, 1, 0, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4]
 }
 
 [sub_resource type="Animation" id="Animation_fhq0u"]
@@ -144,30 +145,18 @@ tracks/0/path = NodePath("Sprite2D:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.366667, 0.4, 0.433333, 0.766667, 0.8),
+"times": PackedFloat32Array(0, 0.0666667, 0.366667, 0.4, 0.433333, 0.733333, 0.8),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 10), Vector2(0, 70), Vector2(0, 80), Vector2(0, 70), Vector2(0, 10), Vector2(0, 0)]
 }
-tracks/1/type = "value"
+tracks/1/type = "method"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:scale")
-tracks/1/interp = 2
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(0.1, 1), Vector2(1, 1), Vector2(0.1, 1), Vector2(1, 1)]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0.8),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -175,10 +164,22 @@ tracks/2/keys = {
 "method": &"turn_off_maneuvering"
 }]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D/Area2D:monitoring")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.766667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D/Area2D:monitoring")
+tracks/3/path = NodePath("Sprite2D/Area2D:monitorable")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -190,14 +191,14 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Sprite2D/Area2D:monitorable")
+tracks/4/path = NodePath("Sprite2D:frame")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.766667),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.0333333, 0.1, 0.133333, 0.2, 0.233333, 0.3, 0.333333, 0.4, 0.433333, 0.5, 0.533333, 0.6, 0.633333, 0.7, 0.733333, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [true, false, true]
+"values": [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 0, 1, 2, 3, 4]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8gbd8"]
@@ -211,10 +212,25 @@ _data = {
 script = ExtResource("1_rjy3b")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_wtqe5")
+texture = ExtResource("2_3q8rd")
+hframes = 4
+vframes = 4
+frame = 4
+script = ExtResource("3_5q88u")
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="Sprite2D"]
+[node name="CPUParticlesLeft" type="CPUParticles2D" parent="Sprite2D"]
 show_behind_parent = true
+position = Vector2(-14, -2)
+rotation = -1.5708
+amount = 64
+texture = ExtResource("2_sm18u")
+gravity = Vector2(0, 0)
+scale_amount_curve = SubResource("Curve_jgwmn")
+color_ramp = SubResource("Gradient_k86wc")
+
+[node name="CPUParticlesRight" type="CPUParticles2D" parent="Sprite2D"]
+show_behind_parent = true
+position = Vector2(-14, 2)
 rotation = -1.5708
 amount = 64
 texture = ExtResource("2_sm18u")
@@ -229,7 +245,7 @@ position = Vector2(-5, 0)
 shape = SubResource("CircleShape2D_yfxhl")
 
 [node name="Cannon" type="Node2D" parent="Sprite2D"]
-position = Vector2(16, 0)
+position = Vector2(8, 3)
 script = ExtResource("4_3rb2r")
 bullet_scene = ExtResource("5_ldt7c")
 
