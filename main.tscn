@@ -31,15 +31,10 @@ repeat_times = 4
 [node name="Sprite2D" type="Sprite2D" parent="World/Parallax2D"]
 texture = ExtResource("1_gw7bq")
 
-[node name="Player" parent="." instance=ExtResource("2_x2e4t")]
-
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(150, 0)
 position_smoothing_enabled = true
 rotation_smoothing_speed = 2.0
-
-[node name="Enemy" parent="." instance=ExtResource("3_tt4h1")]
-position = Vector2(414, 0)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -74,5 +69,16 @@ shape = SubResource("WorldBoundaryShape2D_o8l7v")
 [node name="RightBoundary" type="CollisionShape2D" parent="CanvasLayer/HUD/ViewportBoundaries"]
 position = Vector2(640, 180)
 shape = SubResource("WorldBoundaryShape2D_3yc6f")
+
+[node name="Player" parent="." instance=ExtResource("2_x2e4t")]
+
+[node name="Enemy" parent="." instance=ExtResource("3_tt4h1")]
+position = Vector2(414, 0)
+
+[node name="Enemy2" parent="." instance=ExtResource("3_tt4h1")]
+position = Vector2(350, 61)
+
+[node name="Enemy3" parent="." instance=ExtResource("3_tt4h1")]
+position = Vector2(350, -60)
 
 [editable path="Player"]

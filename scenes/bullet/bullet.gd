@@ -1,5 +1,7 @@
 extends Node2D
 
+@export var _damage: int = 1
+
 var _speed := 500.0
 var _direction := Vector2.RIGHT
 var _max_lifetime := 4.0
@@ -20,3 +22,8 @@ func set_up(position: Vector2, rotation: float, collision_mask: int):
 	global_rotation = rotation
 	_direction = Vector2.from_angle(rotation)
 	hurtbox.collision_mask = collision_mask
+
+
+func _on_hurtbox_area_entered(area: Area2D) -> void:
+	area.hit_damage(_damage)
+	queue_free()

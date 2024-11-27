@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_rjy3b"]
 [ext_resource type="Texture2D" uid="uid://dc52s0g784crp" path="res://assets/w-fighter-Sheet.png" id="2_3q8rd"]
-[ext_resource type="Texture2D" uid="uid://bk43e071r74nb" path="res://assets/white-circle.png" id="2_sm18u"]
 [ext_resource type="Script" path="res://scenes/player/sprite_2d.gd" id="3_5q88u"]
 [ext_resource type="Script" path="res://scenes/player/cannon.gd" id="4_3rb2r"]
+[ext_resource type="Texture2D" uid="uid://djepgqvulofcy" path="res://assets/blur-white-circle.png" id="4_a7uxc"]
 [ext_resource type="PackedScene" uid="uid://cduopc8ukaxd6" path="res://scenes/bullet/bullet.tscn" id="5_ldt7c"]
 [ext_resource type="PackedScene" uid="uid://cu50cxkxhwbwh" path="res://scenes/components/hitbox/hitbox.tscn" id="8_lh6tu"]
 
@@ -150,7 +150,7 @@ show_behind_parent = true
 position = Vector2(-14, -2)
 rotation = -1.5708
 amount = 64
-texture = ExtResource("2_sm18u")
+texture = ExtResource("4_a7uxc")
 gravity = Vector2(0, 0)
 scale_amount_curve = SubResource("Curve_jgwmn")
 color_ramp = SubResource("Gradient_k86wc")
@@ -160,7 +160,7 @@ show_behind_parent = true
 position = Vector2(-14, 2)
 rotation = -1.5708
 amount = 64
-texture = ExtResource("2_sm18u")
+texture = ExtResource("4_a7uxc")
 gravity = Vector2(0, 0)
 scale_amount_curve = SubResource("Curve_jgwmn")
 color_ramp = SubResource("Gradient_k86wc")

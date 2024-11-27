@@ -20,10 +20,10 @@ func _input(event: InputEvent) -> void:
 			on_high_g_barrel_right.emit()
 	
 	if event.is_action("shoot_cannon"):
-		if event.is_pressed():
-			on_shoot_started.emit()
-		else:
+		if event.is_released():
 			on_shoot_stoped.emit()
+		elif Input.is_action_just_pressed("shoot_cannon"):
+			on_shoot_started.emit()
 
 
 func get_input_direction() -> Vector2:

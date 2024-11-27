@@ -13,11 +13,13 @@ var _skew_times := [0.05, 0.15, 0.25, 0.35, 0.4]
 @onready var remote_transform_2d: RemoteTransform2D = $RemoteTransform2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var hitbox: Area2D = $Hitbox
 
 
 func _ready() -> void:
 	InputHandler.on_high_g_barrel_left.connect(_on_high_g_barrel_left)
 	InputHandler.on_high_g_barrel_right.connect(_on_high_g_barrel_right)
+	hitbox.on_destroyed.connect(_on_destroyed)
 
 
 func _process(delta: float) -> void:
@@ -76,5 +78,5 @@ func _on_high_g_barrel_right():
 	animation_player.play("high_g_barrel_right")
 
 
-func _on_area_2d_area_entered(area: Area2D) -> void:
-	pass # Replace with function body.
+func _on_destroyed():
+	queue_free()
