@@ -5,6 +5,8 @@ var _direction := Vector2.RIGHT
 var _max_lifetime := 4.0
 var _lifetime := 0.0
 
+@onready var hurtbox: Area2D = $Hurtbox
+
 
 func _physics_process(delta: float) -> void:
 	position += _direction * _speed * delta
@@ -13,6 +15,8 @@ func _physics_process(delta: float) -> void:
 		queue_free()
 
 
-func set_angle(angle: float):
-	rotation = angle
-	_direction = Vector2.from_angle(angle)
+func set_up(position: Vector2, rotation: float, collision_mask: int):
+	global_position = position
+	global_rotation = rotation
+	_direction = Vector2.from_angle(rotation)
+	hurtbox.collision_mask = collision_mask

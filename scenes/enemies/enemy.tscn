@@ -1,12 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://dwnpv3s7it7pg"]
+[gd_scene load_steps=9 format=3 uid="uid://dwnpv3s7it7pg"]
 
 [ext_resource type="Script" path="res://scenes/enemies/enemy.gd" id="1_41sj6"]
 [ext_resource type="Texture2D" uid="uid://ce4mp3tpj6u46" path="res://assets/Placeholders-32x32-13.png" id="2_5vjv6"]
 [ext_resource type="Texture2D" uid="uid://bk43e071r74nb" path="res://assets/white-circle.png" id="3_ennsh"]
 [ext_resource type="Script" path="res://scenes/enemies/cannon.gd" id="4_ybxm7"]
 [ext_resource type="PackedScene" uid="uid://cduopc8ukaxd6" path="res://scenes/bullet/bullet.tscn" id="5_o1l04"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_piux8"]
+[ext_resource type="PackedScene" uid="uid://cu50cxkxhwbwh" path="res://scenes/components/hitbox/hitbox.tscn" id="6_maemp"]
 
 [sub_resource type="Curve" id="Curve_503jj"]
 min_value = 0.3
@@ -17,20 +16,11 @@ point_count = 4
 offsets = PackedFloat32Array(0, 0.513333, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
-[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_dwjyo"]
-points = PackedVector2Array(0, 0, 300, -100, 300, 100)
-
 [node name="Enemy" type="Node2D" groups=["enemy"]]
 script = ExtResource("1_41sj6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_5vjv6")
-
-[node name="Area2D" type="Area2D" parent="Sprite2D"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
-position = Vector2(-6, 0)
-shape = SubResource("CircleShape2D_piux8")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="Sprite2D"]
 show_behind_parent = true
@@ -46,9 +36,18 @@ script = ExtResource("4_ybxm7")
 bullet_scene = ExtResource("5_o1l04")
 
 [node name="ShootingArea" type="Area2D" parent="Cannon"]
+collision_layer = 0
+collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Cannon/ShootingArea"]
-shape = SubResource("ConvexPolygonShape2D_dwjyo")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Cannon/ShootingArea"]
+polygon = PackedVector2Array(0, 0, 20, 40, 300, 100, 300, -100, 20, -40)
+
+[node name="Hitbox" parent="." instance=ExtResource("6_maemp")]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hitbox"]
+polygon = PackedVector2Array(-16, -16, 16, 0, -16, 16)
 
 [connection signal="area_entered" from="Cannon/ShootingArea" to="Cannon" method="_on_shooting_area_area_entered"]
 [connection signal="area_exited" from="Cannon/ShootingArea" to="Cannon" method="_on_shooting_area_area_exited"]

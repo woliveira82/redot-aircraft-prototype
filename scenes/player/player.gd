@@ -74,3 +74,7 @@ func _on_high_g_barrel_left():
 func _on_high_g_barrel_right():
 	maneuvering = true
 	animation_player.play("high_g_barrel_right")
+
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	pass # Replace with function body.

@@ -4,9 +4,12 @@ var _speed := 200.0
 var _turn_angle := 0.8
 var _player: Node2D
 
+@onready var hitbox: Area2D = $Hitbox
+
 
 func _ready() -> void:
 	_player = get_tree().get_first_node_in_group("player")
+	hitbox.on_destroyed.connect(_on_destroyed)
 
 
 func _process(delta: float) -> void:
@@ -19,3 +22,7 @@ func _process(delta: float) -> void:
 func _get_player_angle() -> float:
 	var player_direction: Vector2 = (_player.position - position).normalized()
 	return player_direction.angle()
+
+
+func _on_destroyed() -> void:
+	queue_free()

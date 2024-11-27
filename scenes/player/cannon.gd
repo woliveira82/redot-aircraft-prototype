@@ -3,6 +3,7 @@ extends Node2D
 @export var bullet_scene: PackedScene
 
 var _rof := 0.2
+var _layer_mask := 4
 
 @onready var timer: Timer = $Timer
 
@@ -15,8 +16,7 @@ func _ready() -> void:
 func _shoot():
 	var bullet = bullet_scene.instantiate()
 	get_tree().root.add_child(bullet)
-	bullet.position = global_position
-	bullet.set_angle(global_rotation)
+	bullet.set_up(global_position, global_rotation, _layer_mask)
 
 
 func _on_shooting_cannon_started() -> void:

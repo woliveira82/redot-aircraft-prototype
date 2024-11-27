@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scenes/player/sprite_2d.gd" id="3_5q88u"]
 [ext_resource type="Script" path="res://scenes/player/cannon.gd" id="4_3rb2r"]
 [ext_resource type="PackedScene" uid="uid://cduopc8ukaxd6" path="res://scenes/bullet/bullet.tscn" id="5_ldt7c"]
+[ext_resource type="PackedScene" uid="uid://cu50cxkxhwbwh" path="res://scenes/components/hitbox/hitbox.tscn" id="8_lh6tu"]
 
 [sub_resource type="Curve" id="Curve_jgwmn"]
 min_value = 0.3
@@ -15,8 +16,6 @@ point_count = 4
 [sub_resource type="Gradient" id="Gradient_k86wc"]
 offsets = PackedFloat32Array(0, 0.513333, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_yfxhl"]
 
 [sub_resource type="Animation" id="Animation_kx6lq"]
 length = 0.001
@@ -35,34 +34,10 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D/Area2D:monitoring")
+tracks/1/path = NodePath("Sprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D/Area2D:monitorable")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D:frame")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -101,34 +76,10 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D/Area2D:monitoring")
+tracks/2/path = NodePath("Sprite2D:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.766667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [true, false, true]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D/Area2D:monitorable")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.766667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [true, false, true]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Sprite2D:frame")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.0666667, 0.1, 0.133333, 0.2, 0.266667, 0.3, 0.333333, 0.4, 0.466667, 0.5, 0.533333, 0.6, 0.666667, 0.7, 0.733333, 0.8),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
@@ -167,34 +118,10 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D/Area2D:monitoring")
+tracks/2/path = NodePath("Sprite2D:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.766667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [true, false, true]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D/Area2D:monitorable")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.766667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [true, false, true]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Sprite2D:frame")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.0333333, 0.1, 0.133333, 0.2, 0.233333, 0.3, 0.333333, 0.4, 0.433333, 0.5, 0.533333, 0.6, 0.633333, 0.7, 0.733333, 0.8),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
@@ -238,12 +165,6 @@ gravity = Vector2(0, 0)
 scale_amount_curve = SubResource("Curve_jgwmn")
 color_ramp = SubResource("Gradient_k86wc")
 
-[node name="Area2D" type="Area2D" parent="Sprite2D" groups=["player_area"]]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
-position = Vector2(-5, 0)
-shape = SubResource("CircleShape2D_yfxhl")
-
 [node name="Cannon" type="Node2D" parent="Sprite2D"]
 position = Vector2(8, 3)
 script = ExtResource("4_3rb2r")
@@ -261,5 +182,13 @@ update_rotation = false
 libraries = {
 "": SubResource("AnimationLibrary_8gbd8")
 }
+
+[node name="Hitbox" parent="." groups=["player_area"] instance=ExtResource("8_lh6tu")]
+collision_layer = 2
+collision_mask = 0
+_integrity = 10
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hitbox"]
+polygon = PackedVector2Array(-14, -4, -14, 4, 6, 14, 15, 0, 6, -14)
 
 [connection signal="timeout" from="Sprite2D/Cannon/Timer" to="Sprite2D/Cannon" method="_on_timer_timeout"]
