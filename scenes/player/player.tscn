@@ -1,11 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://bhu6yt022ld1c"]
+[gd_scene load_steps=15 format=3 uid="uid://bhu6yt022ld1c"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_rjy3b"]
 [ext_resource type="Texture2D" uid="uid://dc52s0g784crp" path="res://assets/w-fighter-Sheet.png" id="2_3q8rd"]
 [ext_resource type="Script" path="res://scenes/player/sprite_2d.gd" id="3_5q88u"]
 [ext_resource type="Script" path="res://scenes/player/cannon.gd" id="4_3rb2r"]
 [ext_resource type="Texture2D" uid="uid://djepgqvulofcy" path="res://assets/blur-white-circle.png" id="4_a7uxc"]
-[ext_resource type="PackedScene" uid="uid://cduopc8ukaxd6" path="res://scenes/bullet/bullet.tscn" id="5_ldt7c"]
+[ext_resource type="PackedScene" uid="uid://cduopc8ukaxd6" path="res://scenes/components/bullet/bullet.tscn" id="5_ldt7c"]
+[ext_resource type="PackedScene" uid="uid://cwvgc04aa1xn5" path="res://scenes/components/launcher/launcher.tscn" id="7_ui1gv"]
 [ext_resource type="PackedScene" uid="uid://cu50cxkxhwbwh" path="res://scenes/components/hitbox/hitbox.tscn" id="8_lh6tu"]
 
 [sub_resource type="Curve" id="Curve_jgwmn"]
@@ -139,13 +140,14 @@ _data = {
 script = ExtResource("1_rjy3b")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 10
 texture = ExtResource("2_3q8rd")
 hframes = 4
 vframes = 4
 frame = 4
 script = ExtResource("3_5q88u")
 
-[node name="CPUParticlesLeft" type="CPUParticles2D" parent="Sprite2D"]
+[node name="CPUParticlesLeft" type="CPUParticles2D" parent="."]
 show_behind_parent = true
 position = Vector2(-14, -2)
 rotation = -1.5708
@@ -155,7 +157,7 @@ gravity = Vector2(0, 0)
 scale_amount_curve = SubResource("Curve_jgwmn")
 color_ramp = SubResource("Gradient_k86wc")
 
-[node name="CPUParticlesRight" type="CPUParticles2D" parent="Sprite2D"]
+[node name="CPUParticlesRight" type="CPUParticles2D" parent="."]
 show_behind_parent = true
 position = Vector2(-14, 2)
 rotation = -1.5708
@@ -165,13 +167,16 @@ gravity = Vector2(0, 0)
 scale_amount_curve = SubResource("Curve_jgwmn")
 color_ramp = SubResource("Gradient_k86wc")
 
-[node name="Cannon" type="Node2D" parent="Sprite2D"]
+[node name="Cannon" type="Node2D" parent="."]
 position = Vector2(8, 3)
 script = ExtResource("4_3rb2r")
 bullet_scene = ExtResource("5_ldt7c")
 
-[node name="Timer" type="Timer" parent="Sprite2D/Cannon"]
+[node name="Timer" type="Timer" parent="Cannon"]
 wait_time = 0.2
+
+[node name="Launcher" parent="." instance=ExtResource("7_ui1gv")]
+position = Vector2(7, -2)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
 position = Vector2(150, 0)
@@ -191,4 +196,4 @@ _integrity = 10
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hitbox"]
 polygon = PackedVector2Array(-14, -4, -14, 4, 6, 14, 15, 0, 6, -14)
 
-[connection signal="timeout" from="Sprite2D/Cannon/Timer" to="Sprite2D/Cannon" method="_on_timer_timeout"]
+[connection signal="timeout" from="Cannon/Timer" to="Cannon" method="_on_timer_timeout"]

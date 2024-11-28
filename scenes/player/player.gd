@@ -14,6 +14,7 @@ var _skew_times := [0.05, 0.15, 0.25, 0.35, 0.4]
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var hitbox: Area2D = $Hitbox
+@onready var launcher: Node2D = $Launcher
 
 
 func _ready() -> void:

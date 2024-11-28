@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cduopc8ukaxd6"]
 
-[ext_resource type="Script" path="res://scenes/bullet/bullet.gd" id="1_3oxrv"]
+[ext_resource type="Script" path="res://scenes/components/bullet/bullet.gd" id="1_3oxrv"]
 [ext_resource type="PackedScene" uid="uid://cx14hfrgi6go4" path="res://scenes/components/hurtbox/hurtbox.tscn" id="2_jtc7h"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_qaxr3"]

@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://dwnpv3s7it7pg"]
 
 [ext_resource type="Script" path="res://scenes/enemies/enemy.gd" id="1_41sj6"]
-[ext_resource type="Texture2D" uid="uid://ce4mp3tpj6u46" path="res://assets/Placeholders-32x32-13.png" id="2_5vjv6"]
-[ext_resource type="Texture2D" uid="uid://bk43e071r74nb" path="res://assets/white-circle.png" id="3_ennsh"]
+[ext_resource type="Texture2D" uid="uid://ca85s7hsv7cmq" path="res://assets/SU-30MKI-Sheet.png" id="2_565pu"]
+[ext_resource type="Texture2D" uid="uid://djepgqvulofcy" path="res://assets/blur-white-circle.png" id="3_heheb"]
 [ext_resource type="Script" path="res://scenes/enemies/cannon.gd" id="4_ybxm7"]
-[ext_resource type="PackedScene" uid="uid://cduopc8ukaxd6" path="res://scenes/bullet/bullet.tscn" id="5_o1l04"]
+[ext_resource type="PackedScene" uid="uid://cduopc8ukaxd6" path="res://scenes/components/bullet/bullet.tscn" id="5_o1l04"]
 [ext_resource type="PackedScene" uid="uid://cu50cxkxhwbwh" path="res://scenes/components/hitbox/hitbox.tscn" id="6_maemp"]
 
 [sub_resource type="Curve" id="Curve_503jj"]
@@ -20,18 +20,30 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 script = ExtResource("1_41sj6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_5vjv6")
+texture = ExtResource("2_565pu")
+hframes = 4
+vframes = 4
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="Sprite2D"]
+[node name="CPUParticlesLeft" type="CPUParticles2D" parent="Sprite2D"]
 show_behind_parent = true
+position = Vector2(-12, -2)
 amount = 64
-texture = ExtResource("3_ennsh")
+texture = ExtResource("3_heheb")
+gravity = Vector2(0, 0)
+scale_amount_curve = SubResource("Curve_503jj")
+color_ramp = SubResource("Gradient_7860c")
+
+[node name="CPUParticlesRight" type="CPUParticles2D" parent="Sprite2D"]
+show_behind_parent = true
+position = Vector2(-12, 2)
+amount = 64
+texture = ExtResource("3_heheb")
 gravity = Vector2(0, 0)
 scale_amount_curve = SubResource("Curve_503jj")
 color_ramp = SubResource("Gradient_7860c")
 
 [node name="Cannon" type="Node2D" parent="."]
-position = Vector2(16, 0)
+position = Vector2(7, 0)
 script = ExtResource("4_ybxm7")
 bullet_scene = ExtResource("5_o1l04")
 
@@ -47,7 +59,7 @@ collision_layer = 4
 collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hitbox"]
-polygon = PackedVector2Array(-16, -16, 16, 0, -16, 16)
+polygon = PackedVector2Array(-13, -16, 17, 0, -13, 16)
 
 [connection signal="area_entered" from="Cannon/ShootingArea" to="Cannon" method="_on_shooting_area_area_entered"]
 [connection signal="area_exited" from="Cannon/ShootingArea" to="Cannon" method="_on_shooting_area_area_exited"]

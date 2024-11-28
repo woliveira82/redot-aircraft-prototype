@@ -5,6 +5,7 @@ signal on_high_g_barrel_left
 signal on_high_g_barrel_right
 signal on_shoot_started
 signal on_shoot_stoped
+signal on_missile_launched(target: Node2D)
 
 
 func _input(event: InputEvent) -> void:
