@@ -5,7 +5,7 @@ var _target: Node2D
 var _turn_angle := 6.0
 
 
-func _physics_process(delta: float) -> void:
+func _process(delta: float) -> void:
 	if _target:
 		var angle_diff: float = angle_difference(rotation, _get_angle_to_target())
 		var max_turn_angle: float = clamp(angle_diff, - _turn_angle, _turn_angle)
