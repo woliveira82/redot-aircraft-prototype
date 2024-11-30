@@ -8,7 +8,7 @@ var _speed := 200
 var _acc := 200.0
 var _skew := 0
 var _skew_current := 0.0
-var _skew_times := [0.05, 0.15, 0.25, 0.35, 0.4]
+var _skew_times := [0.03, 0.09, 0.15, 0.21, 0.27]
 
 @onready var remote_transform_2d: RemoteTransform2D = $RemoteTransform2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
