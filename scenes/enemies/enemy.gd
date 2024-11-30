@@ -20,6 +20,9 @@ func _process(delta: float) -> void:
 
 
 func _get_player_angle() -> float:
+	if not _player:
+		return Vector2.DOWN.angle()
+	
 	var player_direction: Vector2 = (_player.position - position).normalized()
 	return player_direction.angle()
 
