@@ -32,7 +32,7 @@ repeat_times = 4
 texture = ExtResource("1_sqpa7")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(150, 0)
+position = Vector2(100, 0)
 position_smoothing_enabled = true
 rotation_smoothing_speed = 2.0
 

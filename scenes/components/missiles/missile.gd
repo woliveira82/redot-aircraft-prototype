@@ -1,15 +1,17 @@
 extends Node2D
 
+@export var _damage := 10
+
 var _speed := 500.0
 var _target: Node2D
-var _turn_angle := 6.0
+var _turn_angle := 2.4
 
+@onready var hurtbox: Area2D = $Hurtbox
 
 func _process(delta: float) -> void:
 	if _target:
-		var angle_diff: float = angle_difference(rotation, _get_angle_to_target())
-		var max_turn_angle: float = clamp(angle_diff, - _turn_angle, _turn_angle)
-		rotation +=  max_turn_angle * delta
+		var angle_diff: float = angle_difference(global_rotation, _get_angle_to_target())
+		rotation +=  _turn_angle * sign(angle_diff) * delta
 	
 	position += Vector2.from_angle(rotation) * _speed * delta
 
@@ -26,3 +28,12 @@ func _get_angle_to_target() -> float:
 
 func _on_timer_timeout() -> void:
 	queue_free()
+
+
+func _on_hurtbox_area_entered(area: Area2D) -> void:
+	area.hit_damage(_damage)
+	queue_free()
+
+
+func _on_activate_timer_timeout() -> void:
+	hurtbox.monitoring = true
