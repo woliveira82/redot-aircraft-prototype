@@ -1,8 +1,9 @@
+class_name Bullet
 extends Node2D
 
 @export var _damage: int = 1
 
-var _speed := 500.0
+var _speed := 600.0
 var _direction := Vector2.RIGHT
 var _max_lifetime := 4.0
 var _lifetime := 0.0

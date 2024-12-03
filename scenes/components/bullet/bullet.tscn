@@ -3,17 +3,13 @@
 [ext_resource type="Script" path="res://scenes/components/bullet/bullet.gd" id="1_3oxrv"]
 [ext_resource type="PackedScene" uid="uid://cx14hfrgi6go4" path="res://scenes/components/hurtbox/hurtbox.tscn" id="2_jtc7h"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_qaxr3"]
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0of67"]
 size = Vector2(4, 2)
 
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_qaxr3"]
+
 [node name="Bullet" type="Node2D"]
 script = ExtResource("1_3oxrv")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(4, 2)
-texture = SubResource("PlaceholderTexture2D_qaxr3")
 
 [node name="Hurtbox" parent="." instance=ExtResource("2_jtc7h")]
 collision_layer = 0
@@ -21,6 +17,11 @@ collision_mask = 6
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 shape = SubResource("RectangleShape2D_0of67")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+scale = Vector2(4, 2)
+texture = SubResource("PlaceholderTexture2D_qaxr3")
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 

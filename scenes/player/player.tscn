@@ -173,7 +173,7 @@ script = ExtResource("4_3rb2r")
 bullet_scene = ExtResource("5_ldt7c")
 
 [node name="Timer" type="Timer" parent="Cannon"]
-wait_time = 0.2
+wait_time = 0.15
 
 [node name="Launcher" parent="." instance=ExtResource("7_ui1gv")]
 position = Vector2(7, -2)

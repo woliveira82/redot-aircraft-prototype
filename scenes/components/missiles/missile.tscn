@@ -29,8 +29,8 @@ draw_order = 1
 texture = ExtResource("2_3vfpw")
 spread = 3.0
 gravity = Vector2(0, 0)
-initial_velocity_min = 100.0
-initial_velocity_max = 100.0
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
 scale_amount_curve = SubResource("Curve_62kow")
 color_ramp = SubResource("Gradient_2x0ek")
 
