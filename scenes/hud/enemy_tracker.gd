@@ -8,7 +8,7 @@ var _enemy_tracked: Node2D
 @onready var on_screen_sprite: Sprite2D = $OnScreenSprite
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if not _enemy_tracked:
 		queue_free()
 		return
@@ -34,13 +34,13 @@ func set_enemy(enemy: Node2D):
 	_enemy_tracked = enemy
 
 
-func _on_on_screen_area_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+func _on_on_screen_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.pressed:
 		if (event as InputEventMouseButton).button_index == MOUSE_BUTTON_RIGHT:
 			InputHandler.on_missile_launched.emit(_enemy_tracked)
 
 
-func _on_out_screen_area_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+func _on_out_screen_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.pressed:
 		if (event as InputEventMouseButton).button_index == MOUSE_BUTTON_RIGHT:
 			InputHandler.on_missile_launched.emit(_enemy_tracked)
