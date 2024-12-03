@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=3 uid="uid://dcuxxwtfum7pt"]
+
+[ext_resource type="Texture2D" uid="uid://chuhujwsh4pgl" path="res://assets/Placeholders-32x32-11.png" id="1_aib0b"]
+[ext_resource type="PackedScene" uid="uid://cu50cxkxhwbwh" path="res://scenes/components/hitbox/hitbox.tscn" id="1_ndhp4"]
+[ext_resource type="Script" path="res://scenes/enemies/aa_turret/aa_turret.gd" id="1_xdd3l"]
+[ext_resource type="Script" path="res://scenes/enemies/aa_turret/cannon.gd" id="3_rw4f3"]
+[ext_resource type="Texture2D" uid="uid://bhccphfnvouvr" path="res://assets/Placeholders-32x32-18.png" id="4_lr6os"]
+[ext_resource type="PackedScene" uid="uid://cduopc8ukaxd6" path="res://scenes/components/bullet/bullet.tscn" id="4_qya1y"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w40m1"]
+radius = 15.0333
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lbwor"]
+radius = 200.0
+
+[node name="AATurret" type="Node2D"]
+script = ExtResource("1_xdd3l")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_aib0b")
+
+[node name="Hitbox" parent="." instance=ExtResource("1_ndhp4")]
+collision_layer = 4
+collision_mask = 0
+_integrity = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_w40m1")
+
+[node name="Cannon" type="Node2D" parent="."]
+script = ExtResource("3_rw4f3")
+bullet_scene = ExtResource("4_qya1y")
+
+[node name="RadarArea" type="Area2D" parent="Cannon"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cannon/RadarArea"]
+shape = SubResource("CircleShape2D_lbwor")
+
+[node name="Sprite2D" type="Sprite2D" parent="Cannon"]
+position = Vector2(14, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_lr6os")
+
+[node name="Timer" type="Timer" parent="Cannon"]
+wait_time = 0.15
+
+[connection signal="on_destroyed" from="Hitbox" to="." method="_on_hitbox_on_destroyed"]
+[connection signal="area_entered" from="Cannon/RadarArea" to="Cannon" method="_on_radar_area_area_entered"]
+[connection signal="area_exited" from="Cannon/RadarArea" to="Cannon" method="_on_radar_area_area_exited"]
+[connection signal="timeout" from="Cannon/Timer" to="Cannon" method="_on_timer_timeout"]

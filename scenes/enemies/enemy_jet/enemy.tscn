@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://dwnpv3s7it7pg"]
 
-[ext_resource type="Script" path="res://scenes/enemies/enemy.gd" id="1_41sj6"]
+[ext_resource type="Script" path="res://scenes/enemies/enemy_jet/enemy.gd" id="1_41sj6"]
 [ext_resource type="Texture2D" uid="uid://ca85s7hsv7cmq" path="res://assets/SU-30MKI-Sheet.png" id="2_565pu"]
 [ext_resource type="Texture2D" uid="uid://djepgqvulofcy" path="res://assets/blur-white-circle.png" id="3_heheb"]
-[ext_resource type="Script" path="res://scenes/enemies/cannon.gd" id="4_ybxm7"]
+[ext_resource type="Script" path="res://scenes/enemies/enemy_jet/cannon.gd" id="4_ybxm7"]
 [ext_resource type="PackedScene" uid="uid://cduopc8ukaxd6" path="res://scenes/components/bullet/bullet.tscn" id="5_o1l04"]
 [ext_resource type="PackedScene" uid="uid://cu50cxkxhwbwh" path="res://scenes/components/hitbox/hitbox.tscn" id="6_maemp"]
 

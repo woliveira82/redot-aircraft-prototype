@@ -3,7 +3,7 @@ extends Node2D
 @export var bullet_scene: PackedScene
 
 var _shooting := false
-var _rof := 0.2
+var _rof := 0.15
 var _fire_time := 0.0
 var _layer_mask := 2
 
